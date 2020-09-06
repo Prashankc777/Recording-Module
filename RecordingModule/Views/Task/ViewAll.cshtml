@@ -1,0 +1,51 @@
+﻿@model IEnumerable<RecordingModule.Services.Viewmodule.TaskModal>
+
+@{
+    ViewBag.Title = "ViewAll";
+}
+
+<h2></h2>
+<p></p>
+
+
+<p>
+    @Html.ActionLink("Create New", "Add")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           #
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaskName)
+        </th>
+        <th>
+            <p>Actions</p>
+        </th>
+    </tr>
+
+    @if (Model != null)
+    {
+
+
+        foreach (var item in Model.Select((x, i) => new { Data = x, index = i + 1 }))
+        {
+            <tr>
+
+                <td>
+                    @item.index
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data.TaskName)
+                </td>
+                <td>
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Data.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Data.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Data. Id })
+                </td>
+            </tr>
+        }
+    }
+
+</table>

@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RecordingModuleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblTask">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskName" Type="nvarchar(max)" />
+          <Property Name="DeletedTime" Type="datetime" />
+          <Property Name="IsEdited" Type="int" />
+          <Property Name="EditedTime" Type="datetime" />
+          <Property Name="IsDeleted" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbluser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="int" />
+          <Property Name="DeletedTime" Type="datetime" />
+          <Property Name="IsEdited" Type="int" />
+          <Property Name="EditedTime" Type="datetime" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="Taskid" Type="int" />
+        </EntityType>
+        <Association Name="FK_tbluser_tblTask">
+          <End Role="tblTask" Type="Self.tblTask" Multiplicity="0..1" />
+          <End Role="tbluser" Type="Self.tbluser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTask">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbluser">
+              <PropertyRef Name="Taskid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RecordingModuleModelStoreContainer">
+          <EntitySet Name="tblTask" EntityType="Self.tblTask" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbluser" EntityType="Self.tbluser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbluser_tblTask" Association="Self.FK_tbluser_tblTask">
+            <End Role="tblTask" EntitySet="tblTask" />
+            <End Role="tbluser" EntitySet="tbluser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RecordingModuleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RecordingModuleEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblTask" EntityType="RecordingModuleModel.tblTask" />
+          <EntitySet Name="tbluser" EntityType="RecordingModuleModel.tbluser" />
+          <AssociationSet Name="FK_tbluser_tblTask" Association="RecordingModuleModel.FK_tbluser_tblTask">
+            <End Role="tblTask" EntitySet="tblTask" />
+            <End Role="tbluser" EntitySet="tbluser" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblTask">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeletedTime" Type="DateTime" Precision="3" />
+          <Property Name="IsEdited" Type="Int32" />
+          <Property Name="EditedTime" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbluser" Relationship="RecordingModuleModel.FK_tbluser_tblTask" FromRole="tblTask" ToRole="tbluser" />
+        </EntityType>
+        <EntityType Name="tbluser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="DeletedTime" Type="DateTime" Precision="3" />
+          <Property Name="IsEdited" Type="Int32" />
+          <Property Name="EditedTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="Taskid" Type="Int32" />
+          <NavigationProperty Name="tblTask" Relationship="RecordingModuleModel.FK_tbluser_tblTask" FromRole="tbluser" ToRole="tblTask" />
+        </EntityType>
+        <Association Name="FK_tbluser_tblTask">
+          <End Type="RecordingModuleModel.tblTask" Role="tblTask" Multiplicity="0..1" />
+          <End Type="RecordingModuleModel.tbluser" Role="tbluser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTask">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbluser">
+              <PropertyRef Name="Taskid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RecordingModuleModelStoreContainer" CdmEntityContainer="RecordingModuleEntities2">
+          <EntitySetMapping Name="tblTask">
+            <EntityTypeMapping TypeName="RecordingModuleModel.tblTask">
+              <MappingFragment StoreEntitySet="tblTask">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="EditedTime" ColumnName="EditedTime" />
+                <ScalarProperty Name="IsEdited" ColumnName="IsEdited" />
+                <ScalarProperty Name="DeletedTime" ColumnName="DeletedTime" />
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbluser">
+            <EntityTypeMapping TypeName="RecordingModuleModel.tbluser">
+              <MappingFragment StoreEntitySet="tbluser">
+                <ScalarProperty Name="Taskid" ColumnName="Taskid" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="EditedTime" ColumnName="EditedTime" />
+                <ScalarProperty Name="IsEdited" ColumnName="IsEdited" />
+                <ScalarProperty Name="DeletedTime" ColumnName="DeletedTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<RecordingModule.Services.Viewmodule.UserViewModal>
+
+@{
+    ViewBag.Title = "ViewAll";
+}
+
+<h2></h2>
+<p></p>
+
+
+<p>
+    @Html.ActionLink("Create New", "Signup")
+</p>
+
+<div class="container">
+
+
+    <table class="table">
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+
+            
+            <th>Actions</th>
+        </tr>
+
+
+        @if (Model != null)
+        {
+
+            foreach (var item in Model.Select((x,i) => new {Data = x , index = i+1 }))
+            {
+    <tr>
+
+        <td>
+            @item.index
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data.UserName)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Data.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data.Gender)
+        </td>
+
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Data.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Data.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Data.id }) |
+        </td>
+    </tr>
+            }
+        }
+
+    </table>
+
+</div>
+
+
+
+
+
