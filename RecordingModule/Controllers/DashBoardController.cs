@@ -167,6 +167,14 @@ namespace RecordingModule.Controllers
             return RedirectToAction("Login", "User");
         }
 
+
+
+        public ActionResult database()
+        {
+            return View();
+        }
+
+
     
 
     }
