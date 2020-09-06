@@ -174,12 +174,9 @@ namespace RecordingModule.Controllers
             return View();
         }
 
-        public ActionResult database1()
-        {
-            return View();
-        }
+        
 
-        //test
+      
 
 
     }
