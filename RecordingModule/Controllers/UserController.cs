@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace RecordingModule.Controllers
 {
-     [Authorize]
+    // [Authorize]
     public class UserController : Controller
     {
         IUser user = null;

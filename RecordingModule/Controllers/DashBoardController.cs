@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace RecordingModule.Controllers
 {
-   [Authorize]
+   //[Authorize]
     public class DashBoardController : Controller
     {
         IUser user = null;
@@ -165,14 +165,7 @@ namespace RecordingModule.Controllers
         public ActionResult Logout()
         {
             return RedirectToAction("Login", "User");
-        }
-
-
-
-        public ActionResult database()
-        {
-            return View();
-        }
+        } 
 
         
 

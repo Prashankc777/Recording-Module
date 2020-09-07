@@ -20,14 +20,16 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @if (User.Identity.IsAuthenticated)
-                    {
+                  // @if (User.Identity.IsAuthenticated)
+                   { 
+
                         <li>@Html.ActionLink("Users", "ViewAll", "DashBoard")</li>
                         <li>@Html.ActionLink("Task", "ViewAll", "Task")</li>
 
                         <li>@Html.ActionLink("Logout", "Logout", "DashBoard")</li>
-                    }
+                    
 
+                   }
 
 
                 </ul>
